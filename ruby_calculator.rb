@@ -74,8 +74,10 @@ def main
 			break
 		end
 		num_one = result(num_one, num_two, op)
+		puts "\n\n\n******************"
 		puts "The new result is:"
 		puts num_one
+		puts "******************\n\n"
 	end 
 end
 
