@@ -2,26 +2,24 @@
 # stage the file - git add
 # make a commit
 # push to a github repo
-
+@clear = false
 
 def num
-	calculation = []
 	puts "Enter a number"
 	num = gets
 
 	while true
 
 		if num.strip.to_f < 0 || num.strip.to_f > 0
-			puts 'valid'
-			calculation << num.strip.to_f
 			return num
 		elsif num.strip == '0'
-			puts 'valid'
-			calculation << num.strip.to_f
 			return num
+		elsif num.strip.downcase == 'clear'
+			@clear = true
+			return 0
 		else
 			puts 'Not valid'
-			puts "Enter a valid number"
+			puts 'Enter a valid number'
 			num = gets
 		end
 	end
@@ -35,54 +33,56 @@ def get_operator
 
 	while true
 		if operators_arr.include? op
-			puts "Valid"
 			return op
+		elsif op.downcase == 'clear'
+			@clear = true
+			return 0			
 		else
-			puts "Not valid"
-			puts "Enter a valid operator"
+			puts 'Not valid'
+			puts 'Enter a valid operator'
 			op = gets.strip	
 		end
 	end
 end
 
-def last_num
-	puts "Enter a number"
-	last_num = gets.strip.to_f
-end
 
 
 # displays result
-def result (first, second, op)
-	first.send(op, second)
+def result(first, second, op)
+	first.to_f.send(op, second.to_f)
 end
 
 
-puts "Welcome!"
 
-while true
+
+def main
+	puts "Welcome!"
 	puts "This is the Ruby Calculator :)\n"
 	puts "Enter what you would like to calculate:"
+	num_one = num
+	if @clear
+		return
+	end
 
-	num
+	while true
+		op = get_operator
+		if @clear
+			break
+		end
+		num_two = num
+		if @clear
+			break
+		end
+		num_one = result(num_one, num_two, op)
+		puts "The new result is:"
+		puts num_one
+	end 
+end
 
-	get_operator
+while true
+	@clear = false
+	main
+end
 
-	num
-
-		# puts "The result of #{first_num} #{get_operator} #{last_num} is:"
-		# puts result(first_num, last_num, get_operator)
-end 
-
-
-
-
-
-
-
-
-# figure out how to do the math on the two numbers
-# output the result to the user
-
-# do all the bonuses
 
 
