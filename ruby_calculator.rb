@@ -17,6 +17,8 @@ def num
 		elsif num.strip.downcase == 'clear'
 			@clear = true
 			return 0
+		elsif num.strip.downcase == 'exit'
+			abort('Thanks for using the Ruby Calculator!')
 		else
 			puts 'Not valid'
 			puts 'Enter a valid number'
@@ -36,7 +38,9 @@ def get_operator
 			return op
 		elsif op.downcase == 'clear'
 			@clear = true
-			return 0			
+			return 0
+		elsif op.downcase == 'exit'
+			abort('Thanks for using the Ruby Calculator!')
 		else
 			puts 'Not valid'
 			puts 'Enter a valid operator'
@@ -69,15 +73,17 @@ def main
 		if @clear
 			break
 		end
+	
 		num_two = num
 		if @clear
 			break
 		end
+		
 		num_one = result(num_one, num_two, op)
-		puts "\n\n\n******************"
-		puts "The new result is:"
+		puts "\n\n\n***************"
+		puts "The result is:"
 		puts num_one
-		puts "******************\n\n"
+		puts "***************\n\n"
 	end 
 end
 
